@@ -3,20 +3,21 @@ project (Game_Engine)
 
 # Set include dirs.
 set (INCLUDE_DIR ${INCLUDE_DIR} "libraries/include")
-include_directories (INCLUDE_DIR)
+set (HEADER_DIR ${HEADER_DIR} "source/headers")
+include_directories (${INCLUDE_DIR})
+include_directories (${HEADER_DIR})
 
 # Set source directories.
 set (CPP_DIR ${CPP_DIR} "source/src")
-set (HEADER_DIR ${HEADER_DIR} "source/headers")
 
 # Add the executable
 add_executable (Game_Engine
-	${HEADER_DIR}/Entity.h
-	${CPP_DIR}/Entity.cpp)
+	${HEADER_DIR}/Entity.h	${CPP_DIR}/Entity.cpp
+	${CPP_DIR}/main.cpp)
 	
 #Add libraries
 # TODO: set options for platform and build type.
-set (LIBS_DIR ${LIBS_DIR} "libraries/lib/Win64/release")
+set (LIBS_DIR ${LIBS_DIR} "${PROJECT_SOURCE_DIR}/libraries/lib/Win64/release/gtest.lib")
 cmake_policy(SET CMP0015 NEW) # Use new policy in link_directories(): output absolute paths.
 target_link_libraries (Game_Engine ${LIBS_DIR})
 
