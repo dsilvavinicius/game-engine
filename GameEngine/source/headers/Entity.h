@@ -10,6 +10,9 @@ class Entity
 public:
 	Entity();
 	virtual ~Entity();
+
+	virtual void start();
+	virtual void update();
 };
 
 #endif
